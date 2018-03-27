@@ -12,8 +12,8 @@ def mkdir(path):
     pass
 
 pkglist = []
-pkglist = input("Please enter packagename:").split(" ")
-
+pkglist = raw_input("Please enter packagename:").split(" ")
+print(pkglist)
 def mem():
     os.system("adb shell dumpsys meminfo " + i + " >> ./result/meminfo_" + i + ".txt")
     pass
@@ -30,18 +30,19 @@ def pid():
 
 def uid():
     i_pid = pid()
-    print(i_pid)
+    #print(i_pid)
     if i_pid:
-        uidline = os.popen("adb shell cat /proc/" + i_pid + " /status").readlines()
+        uidline = os.popen("adb shell cat /proc/" + i_pid + "/status").readlines()
+        #print(uidline)
         for x in uidline:
             if len(x.split()) >= 3 and x.split()[0] == "Uid:":
-                print(x.split()[1])
-                return str(x.split()[1])
+                #print(x.split()[1])
+                return x.split()[1]
     pass
 def flow():
     i_uid = uid()
-    print(i_uid)
-    os.system("adb shell cat /proc/net/xt_qtaguid/stats | findstr " + i_uid + " >> ./result/flowinfo_" + i + ".txt")
+    #print(i_uid + "--------------")
+    os.system("adb shell cat /proc/net/xt_qtaguid/stats | findstr "+ i_uid +" >> ./result/flowinfo_" + i + ".txt")
     pass
 
 file = "./result"
@@ -58,8 +59,9 @@ while True:
     #if int(t) == int(10):
     for i in pkglist:
         if i:
+            print(i)
             mem()
             cpu()
             flow()
-    else:
-        print("not collect time")
+        else:
+            print("not collect time")

@@ -1,0 +1,6 @@
+com.miui.weather2/.ActivityWeatherMain
+com.miui.player/.ui.MusicBrowserActivity
+com.xiaomi.market/.ui.MarketTabActivity
+com.android.browser/.BrowserActivity
+com.miui.video/.HomeActivity
+com.duokan.reader/.DkReaderActivity
